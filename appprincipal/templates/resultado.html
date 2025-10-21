@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado de Predicción</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f2f6fa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 60px;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 400px;
+        }
+        h2 {
+            color: #283593;
+        }
+        .riesgo {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .alto {
+            color: #d32f2f;
+        }
+        .medio {
+            color: #f9a825;
+        }
+        .bajo {
+            color: #388e3c;
+        }
+        a {
+            margin-top: 20px;
+            display: block;
+            text-decoration: none;
+            color: #5C6BC0;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Resultado del Análisis</h2>
+        <p>Probabilidad estimada de deserción:</p>
+        <div class="riesgo {% if riesgo == 'ALTO' %}alto{% elif riesgo == 'MEDIO' %}medio{% else %}bajo{% endif %}">
+            {{ riesgo }}
+        </div>
+        <p>Valor aproximado: {{ probabilidad }}%</p>
+
+        <a href="/">← Volver al inicio</a>
+    </div>
+</body>
+</html>

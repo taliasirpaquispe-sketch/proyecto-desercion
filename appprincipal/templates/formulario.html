@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de datos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f2f6fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            color: #283593;
+            margin-top: 40px;
+        }
+        form {
+            background-color: white;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #424242;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            background-color: #5C6BC0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #3F51B5;
+        }
+        a {
+            display: block;
+            margin-top: 15px;
+            color: #5C6BC0;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Formulario de ingreso de datos</h2>
+    <form method="post" action="/formulario/">
+    {% csrf_token %}
+
+        <label>Edad:</label>
+        <input type="number" name="edad" min="15" max="60" required>
+
+        <label>Semestre actual:</label>
+        <select name="semestre">
+            <option value="1">1°</option>
+            <option value="2">2°</option>
+            <option value="3">3°</option>
+            <option value="4">4°</option>
+            <option value="5">5°</option>
+            <option value="6">6°</option>
+            <option value="7">7°</option>
+            <option value="8">8°</option>
+            <option value="9">9°</option>
+            <option value="10">10°</option>
+        </select>
+
+        <label>Promedio general:</label>
+        <input type="number" name="promedio" step="0.01" min="0" max="100" required>
+
+        <label>¿Trabaja actualmente?</label>
+        <select name="trabajo">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+
+        <label>¿Ha reprobado materias?</label>
+        <select name="reprobado">
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+
+        <button type="submit">Enviar datos</button>
+    </form>
+
+    <a href="/">← Volver al inicio</a>
+</body>
+</html>
