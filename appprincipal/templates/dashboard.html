@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2 class="text-center text-primary fw-bold mb-4">Panel de Control General</h2>
+
+  <div class="row text-center mb-4">
+    <div class="col-md-4">
+      <div class="stat-card">
+        <div class="stat-icon stat-good">👤</div>
+        <h5>Total Estudiantes</h5>
+        <h3 class="fw-bold text-primary">{{ total_estudiantes }}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <div class="stat-icon stat-normal">📊</div>
+        <h5>Precisión del Modelo</h5>
+        <h3 class="fw-bold text-warning">{{ precision }}%</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <div class="stat-icon stat-bad">⚠️</div>
+        <h5>Casos de Alto Riesgo</h5>
+        <h3 class="fw-bold text-danger">{{ alto_riesgo }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5 class="text-secondary">Distribución por Riesgo</h5>
+        <canvas id="chartRiesgo"></canvas>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h5 class="text-secondary">Tendencia Temporal</h5>
+        <canvas id="chartTiempo"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx1 = document.getElementById('chartRiesgo');
+new Chart(ctx1, {
+  type: 'doughnut',
+  data: {
+    labels: ['Bajo', 'Medio', 'Alto'],
+    datasets: [{
+      data: [{{ bajo }}, {{ medio }}, {{ alto }}],
+      backgroundColor: ['#66bb6a','#ffca28','#ef5350']
+    }]
+  }
+});
+
+const ctx2 = document.getElementById('chartTiempo');
+new Chart(ctx2, {
+  type: 'line',
+  data: {
+    labels: {{ fechas|safe }},
+    datasets: [{
+      label: 'Riesgo Promedio (%)',
+      data: {{ tendencia|safe }},
+      borderColor: '#3949ab',
+      tension: 0.3
+    }]
+  }
+});
+</script>
+{% endblock %}

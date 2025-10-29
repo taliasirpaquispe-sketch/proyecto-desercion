@@ -1,138 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Página de inicio</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #f2f6fa;
-            text-align: center;
-            padding: 60px;
-        }
-        h1 {
-            color: #283593;
-        }
-        p {
-            color: #424242;
-        }
-        .btn {
-            background-color: #5C6BC0;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-        .btn:hover {
-            background-color: #3F51B5;
-        }
-    </style>
-</head>
-<body>
-    <h1>Sistema de Predicción de Deserción Estudiantil</h1>
-    <p>Bienvenida, Talia. Esta es la pantalla de inicio de tu sistema Django.</p>
-    <a href="/formulario/" class="btn">Iniciar análisis</a>
-    <a href="/historial/" class="btn">Ver historial</a>
+{% extends "base.html" %}
+{% block title %}Inicio | Sistema Deserción{% endblock %}
+{% block content %}
+<div class="text-center mt-5">
+  <h1 class="fw-bold text-primary mb-3">Sistema de Predicción de Deserción Estudiantil</h1>
+  <p class="text-secondary mb-4">Bienvenida, {{ user.first_name|default:"Talia" }}. Explora tus herramientas de análisis y reportes.</p>
 
-    <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Historial de Análisis</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #f2f6fa;
-            margin: 0;
-            padding: 20px;
-        }
-        h2 {
-            text-align: center;
-            color: #283593;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 25px;
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        th, td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #5C6BC0;
-            color: white;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        a {
-            text-decoration: none;
-            color: #5C6BC0;
-            margin: 10px;
-            display: inline-block;
-        }
-        .btn-volver {
-            background-color: #5C6BC0;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-        .btn-volver:hover {
-            background-color: #3F51B5;
-        }
-    </style>
-</head>
-<body>
-    <h2>Historial de Análisis</h2>
-
-    {% if registros %}
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Edad</th>
-            <th>Semestre</th>
-            <th>Promedio</th>
-            <th>Trabajo</th>
-            <th>Reprobado</th>
-            <th>Riesgo</th>
-            <th>Probabilidad</th>
-            <th>Fecha</th>
-        </tr>
-        {% for r in registros %}
-        <tr>
-            <td>{{ r.id }}</td>
-            <td>{{ r.edad }}</td>
-            <td>{{ r.semestre }}</td>
-            <td>{{ r.promedio }}</td>
-            <td>{% if r.trabajo %}Sí{% else %}No{% endif %}</td>
-            <td>{% if r.reprobado %}Sí{% else %}No{% endif %}</td>
-            <td>{{ r.riesgo }}</td>
-            <td>{{ r.probabilidad }}%</td>
-            <td>{{ r.fecha_registro|date:"Y-m-d H:i" }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% else %}
-        <p style="text-align:center;">No hay registros disponibles todavía.</p>
-    {% endif %}
-
-    <div style="text-align:center;">
-        <a href="/" class="btn-volver">Volver al inicio</a>
-    </div>
-</body>
-</html>
-
-
-</body>
-</html>
+  <div class="d-flex justify-content-center gap-3 flex-wrap">
+    <a href="{% url 'formulario' %}" class="btn btn-primary px-4 py-2 fw-semibold">Iniciar análisis</a>
+    <a href="{% url 'historial' %}" class="btn btn-outline-primary px-4 py-2 fw-semibold">Ver historial</a>
+    <a href="{% url 'consultas' %}" class="btn btn-outline-success px-4 py-2 fw-semibold">Consultas</a>
+    <a href="{% url 'reportes' %}" class="btn btn-outline-info px-4 py-2 fw-semibold">Reportes</a>
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-warning px-4 py-2 fw-semibold">Dashboard</a>
+  </div>
+</div>
+{% endblock %}

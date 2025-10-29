@@ -1,0 +1,67 @@
+/* ===== ESTILOS GENERALES ===== */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f6fb;
+    color: #333;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background-color: #2a3eb1 !important;
+}
+.navbar-brand, .nav-link {
+    color: white !important;
+}
+.nav-link:hover {
+    color: #ffca28 !important;
+}
+
+/* ===== BOTONES ===== */
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+}
+.btn-primary {
+    background-color: #3f51b5;
+    border: none;
+}
+.btn-outline-primary:hover {
+    background-color: #3f51b5;
+    color: white;
+}
+
+/* ===== TARJETAS ===== */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* ===== TABLAS ===== */
+.table thead {
+    background-color: #3f51b5;
+    color: white;
+}
+.table-hover tbody tr:hover {
+    background-color: #e8eaf6;
+}
+
+/* ===== DASHBOARD ===== */
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.stat-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.stat-good { color: #66bb6a; }
+.stat-normal { color: #ffca28; }
+.stat-bad { color: #ef5350; }
+
+canvas {
+    max-height: 300px;
+}

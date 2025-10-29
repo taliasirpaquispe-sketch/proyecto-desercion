@@ -1,13 +1,18 @@
 {% extends "base.html" %}
-{% block title %}Historial de Análisis{% endblock %}
+{% block title %}Reportes{% endblock %}
 {% block content %}
 <div class="container mt-4">
-  <h2 class="text-center text-primary mb-4 fw-bold">Historial de Análisis</h2>
+  <h2 class="text-center text-primary fw-bold mb-4">Reportes del Sistema</h2>
 
-  {% if registros %}
+  <div class="text-center mb-3">
+    <a href="{% url 'export_csv' %}" class="btn btn-success me-2">Descargar CSV</a>
+    <a href="{% url 'export_excel' %}" class="btn btn-warning text-white">Descargar Excel</a>
+  </div>
+
+  {% if estudiantes %}
   <div class="table-responsive shadow-sm rounded">
-    <table class="table table-striped table-bordered text-center align-middle">
-      <thead class="table-primary">
+    <table class="table table-striped table-hover text-center align-middle">
+      <thead class="table-light">
         <tr>
           <th>ID</th>
           <th>Nombre</th>
@@ -22,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for r in registros %}
+        {% for r in estudiantes %}
         <tr>
           <td>{{ r.id }}</td>
           <td>{{ r.student.nombre|default:"Sin nombre" }}</td>
@@ -40,11 +45,11 @@
     </table>
   </div>
   {% else %}
-  <p class="text-center mt-4">No hay registros disponibles todavía.</p>
+  <p class="text-center mt-4">No hay datos disponibles para mostrar.</p>
   {% endif %}
 
   <div class="text-center mt-4">
-    <a href="/" class="btn btn-primary">Volver al inicio</a>
+    <a href="/dashboard/" class="btn btn-outline-primary">Volver al Dashboard</a>
   </div>
 </div>
 {% endblock %}
